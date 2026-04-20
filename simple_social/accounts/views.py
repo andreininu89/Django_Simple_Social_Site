@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LogoutView
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 
@@ -29,3 +30,9 @@ class ChangeUserView(LoginRequiredMixin, UpdateView):
         update_session_auth_hash(self.request, self.object)
         messages.success(self.request, "Profile updated successfully!")
         return response
+
+
+class CustomLogoutView(LogoutView):
+    def dispatch(self, request, *args, **kwargs):
+        messages.info(request, "You have successfully logged out.")
+        return super().dispatch(request, *args, **kwargs)
