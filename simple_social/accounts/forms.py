@@ -25,11 +25,37 @@ class CustomUserCreationForm(UserCreationForm):
         self.fields["password2"].label = "Re-enter Password: "
 
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(forms.ModelForm):
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(),
+        required=False,
+        label="New Password",
+        help_text="Leave blank if you don't want to change your password.",
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(), required=False, label="Confirm New Password"
+    )
+
     class Meta:
         model = CustomUser
-        fields = (
-            "username",
-            "email",
-            "password",
-        )  # Add any custom fields here
+        fields = ("username", "email")  # Explicitly define ONLY the fields you want
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data:
+            new_password = cleaned_data.get("new_password")
+            confirm_password = cleaned_data.get("confirm_password")
+
+            if new_password or confirm_password:
+                if new_password != confirm_password:
+                    raise forms.ValidationError("Passwords do not match!")
+        return cleaned_data
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        new_password = self.cleaned_data.get("new_password")
+        if new_password:
+            user.set_password(new_password)
+        if commit:
+            user.save()
+        return user

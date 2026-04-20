@@ -16,7 +16,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_bootstrap5",
     "accounts",
 ]
 
@@ -124,3 +124,7 @@ STATICFILES_DIR = BASE_DIR / "static"
 STATICFILES_DIRS = [
     STATICFILES_DIR,
 ]
+
+LOGIN_REDIRECT_URL = "home"  # Where to go after logging in
+LOGOUT_REDIRECT_URL = "home"  # Where to go after logging out
+LOGIN_URL = "accounts:login"  # Where @login_required sends users
