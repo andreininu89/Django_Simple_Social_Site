@@ -17,11 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from simple_social import views
 from simple_social.views import HomePageView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", HomePageView.as_view(), name="home"),
     path("accounts/", include("accounts.urls", namespace="accounts")),
+    path("groups/", include("groups.urls", namespace="groups")),
 ]
