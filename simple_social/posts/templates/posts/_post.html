@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">@{{ post.user.username }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ post.created_at }}</h6>
+        <div class="card-text">
+            {{ post.message_html|safe }}
+        </div>
+    </div>
+</div>
