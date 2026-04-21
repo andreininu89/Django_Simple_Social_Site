@@ -1,11 +1,10 @@
-from django.urls import path, include
-
-from groups import apps
-from groups.views import GroupCreateView, SingleGroupDetailView, SingleGroupListView
+from django.urls import path
+from groups import views  # Standard way to import views
 
 app_name = "groups"
+
 urlpatterns = [
-    path("", SingleGroupListView.as_view(), name="group_list"),
-    path("new/", GroupCreateView.as_view(), name="group_create"),
-    path("<slug:slug>/", SingleGroupDetailView.as_view(), name="single"),
+    path("", views.SingleGroupListView.as_view(), name="group_list"),
+    path("new/", views.GroupCreateView.as_view(), name="group_create"),
+    path("posts/in/<slug:slug>/", views.SingleGroupDetailView.as_view(), name="single"),
 ]
