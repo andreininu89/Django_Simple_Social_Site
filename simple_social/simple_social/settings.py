@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_bootstrap5",
     "accounts",
+    "groups",
+    "posts",
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,4 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = "home"  # Where to go after logging in
 LOGOUT_REDIRECT_URL = "home"  # Where to go after logging out
 LOGIN_URL = "accounts:login"  # Where @login_required sends users
+# AUTH_USER_MODEL = "accounts.CustomUser"
