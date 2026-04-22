@@ -31,7 +31,7 @@
                         <a class="nav-link" href="{% url 'groups:group_list' %}">Groups</a>
 
                     {% else %}
-                        <a class="nav-link" href="#">Groups</a>
+                        <a class="nav-link" href="{% url 'groups:group_list' %}">Groups</a>
                     {% endif %}
                 </div>
                 <!-- RIGHT SIDE LINKS (Added ms-auto here) -->
