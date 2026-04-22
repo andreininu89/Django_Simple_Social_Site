@@ -19,20 +19,25 @@
 
 {% block group_content %}
     <div class="col-md-8">
-        <div class="group-list">
+        <!-- Wrap in 'list-group' to ensure the borders and rounding look right -->
+        <div class="list-group group-list ">
             {% for group in object_list %}
-                <a class="list-group-item" href="{% url 'groups:single' slug=group.slug %}">
-                    <h3 class="title list-group-item-heading">{{ group.name }}</h3>
-                    <div class="list-group-item-text container-fluid">
+                <a class="card list-group-item-action text-decoration-none mb-3 p-3 shadow-sm border rounded"
+                   href="{% url 'groups:single' slug=group.slug %}">
+                    <h3 class="title list-group-item-heading text-primary">{{ group.name }}</h3>
+
+                    <div class="list-group-item-text container-fluid text-dark">
                         {{ group.description_html|safe }}
-                        <div class="row">
+
+                        <div class="row mt-2">
                             <div class="col-md-4">
-                                <span class="badge">{{ group.members.count }} members </span>
-                                member{{ group.members.count|pluralize }}
+                                <!-- Updated badge class for Bootstrap 5 -->
+                                <span class="badge rounded-pill text-bg-secondary">{{ group.members.count }}</span>
+                                <small class="text-muted">member{{ group.members.count|pluralize }}</small>
                             </div>
                             <div class="col-md-4">
-                                <span class="badge">{{ group.posts.count }} posts </span>
-                                post{{ group.posts.count|pluralize }}
+                                <span class="badge rounded-pill text-bg-secondary">{{ group.posts.count }}</span>
+                                <small class="text-muted">post{{ group.posts.count|pluralize }}</small>
                             </div>
                         </div>
                     </div>

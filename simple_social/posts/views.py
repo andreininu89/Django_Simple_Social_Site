@@ -6,6 +6,7 @@ from django.views import generic
 from braces.views import SelectRelatedMixin
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.db import IntegrityError
 
 from posts import models
 from posts.forms import PostForm
@@ -83,8 +84,11 @@ class CreatePostView(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView)
                     self.request, "You must join the group before you can post!"
                 )
                 return self.form_invalid(form)
-
-        self.object.save()
+        try:
+            self.object.save()
+        except IntegrityError:
+            messages.error(self.request, "You have already posted this exact message!")
+            return self.form_invalid(form)
         return super().form_valid(form)
 
 

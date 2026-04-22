@@ -15,47 +15,47 @@
     <link rel="stylesheet" href="{% static 'css/master.css' %}">
 </head>
 <body>
-    <div class="container ">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">Simple Social</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <!-- LEFT SIDE LINKS -->
-                    <div class="navbar-nav">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">Simple Social</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <!-- LEFT SIDE LINKS -->
+                <div class="navbar-nav">
 {#                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>#}
 {#                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>#}
-                        {% if user.is_authenticated%}
-                            <a class="nav-link" href="{% url 'posts:create' %}">Post</a>
-                            <a class="nav-link" href="{% url 'groups:group_list' %}">Groups</a>
+                    {% if user.is_authenticated%}
+                        <a class="nav-link" href="{% url 'posts:create' %}">Post</a>
+                        <a class="nav-link" href="{% url 'groups:group_list' %}">Groups</a>
 
-                        {% else %}
-                            <a class="nav-link" href="#">Groups</a>
-                        {% endif %}
-                    </div>
-                    <!-- RIGHT SIDE LINKS (Added ms-auto here) -->
-                    <div class="navbar-nav ms-auto">
-                        {% if user.is_authenticated%}
-                            <a class="nav-link" href="{% url 'groups:group_create' %}">Create Groups</a>
-                            <a class="nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
-                            <form method="post" action="{% url 'accounts:logout' %}" class="d-flex align-items-center">
-                                {% csrf_token %}
-                                <button type="submit" class="nav-link btn btn-link p-0 m-0 border-0 align-baseline">
-                                    Log Out
-                                </button>
-                            </form>
+                    {% else %}
+                        <a class="nav-link" href="#">Groups</a>
+                    {% endif %}
+                </div>
+                <!-- RIGHT SIDE LINKS (Added ms-auto here) -->
+                <div class="navbar-nav ms-auto">
+                    {% if user.is_authenticated%}
+                        <a class="nav-link" href="{% url 'groups:group_create' %}">Create Groups</a>
+                        <a class="nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+                        <form method="post" action="{% url 'accounts:logout' %}" class="d-flex align-items-center">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn btn-link p-0 m-0 border-0 align-baseline">
+                                Log Out
+                            </button>
+                        </form>
 {#                            <a class="nav-link" href="{% url 'accounts:password_change' %}">Change Password</a>#}
-                        {% else %}
-                            <a class="nav-link" href="{% url 'accounts:login' %}">Log In</a>
-                            <a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a>
-                        {% endif %}
-                    </div>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'accounts:login' %}">Log In</a>
+                        <a class="nav-link" href="{% url 'accounts:signup' %}">Sign Up</a>
+                    {% endif %}
                 </div>
             </div>
-        </nav>
-    </div>
+
+        </div>
+    </nav>
+
     <div class="container mt-3">
         {% if messages %}
             {% for message in messages %}
@@ -71,7 +71,5 @@
 
         {% endblock %}
     </div>
-
-
 </body>
 </html>
