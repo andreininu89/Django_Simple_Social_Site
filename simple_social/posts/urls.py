@@ -9,4 +9,6 @@ urlpatterns = [
     path("by/<str:username>/", views.UserPostListView.as_view(), name="for_user"),
     path("by/<str:username>/<int:pk>", views.PostDetailView.as_view(), name="single"),
     path("delete/<int:pk>/", views.DeletePostView.as_view(), name="delete"),
+    # "Create Post" for a specific group
+    path("new/in/<slug:slug>/", views.CreatePostView.as_view(), name="create_in_group"),
 ]

@@ -3,11 +3,13 @@
 {% block pre_group %}
     <h1>{{ group.name }}</h1>
     <h2>Member Count: {{ group.members.count }}</h2>
-    <div class="content">
+    <div class="content col-md-8 mb-4">
         {% if user in group.members.all %}
             <a href="{% url 'groups:group_leave' slug=group.slug %}" class="btn btn-danger btn-lg">Leave</a>
+            <a href="{% url 'posts:create_in_group' slug=group.slug %}" class="btn btn-success btn-lg">Post</a>
         {% else %}
             <a href="{% url 'groups:group_join' slug=group.slug %}" class="btn btn-primary btn-lg">Join</a>
+            <p class="text-muted">You must join this group to post messages.</p>
         {% endif %}
     </div>
 {% endblock %}

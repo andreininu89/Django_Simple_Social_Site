@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from accounts.models import CustomUser
 
 
@@ -52,7 +52,7 @@ class CustomUserChangeForm(forms.ModelForm):
         return cleaned_data
 
     def save(self, commit=True):
-        user = super().save(commit=False)
+        user: CustomUser = super().save(commit=False)  # Explicit type hint
         new_password = self.cleaned_data.get("new_password")
         if new_password:
             user.set_password(new_password)
