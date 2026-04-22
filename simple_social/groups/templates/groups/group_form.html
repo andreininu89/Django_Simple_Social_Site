@@ -2,7 +2,7 @@
 {% load django_bootstrap5 %}
 
 {% block group_content %}
-    <div class="container mt-5">
+    <div class="container">
         <h1>Create Group</h1>
         <form action="{% url 'groups:group_create' %}" method="POST" id="group-create-form">
             {% csrf_token %}
