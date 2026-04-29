@@ -45,6 +45,7 @@ class StarBackground {
 
     this.resize();
     this.initStars();
+    this.render = this.render.bind(this);
 
     window.addEventListener("resize", () => this.resize());
 
@@ -67,7 +68,7 @@ class StarBackground {
     );
   }
 
-  render = () => {
+  render() {
     const ctx = this.ctx;
 
     ctx.clearRect(0, 0, this.width, this.height);
@@ -83,7 +84,7 @@ class StarBackground {
     }
 
     requestAnimationFrame(this.render);
-  };
+  }
 }
 
 // init
